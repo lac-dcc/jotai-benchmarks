@@ -1,7 +1,7 @@
 # The Jotai Benchmark Collection
 
 <p align="center">
-  <img alt="jotai drawing" src="assets/img/ProjBanner.png" width="95%" height="auto"/></br>
+  <img alt="jotai drawing" src="./assets/img/ProjBanner.png" width="95%" height="auto"/></br>
 </p>
 
 Jotai is a large collection of executable benchmarks mined from open source
