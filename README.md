@@ -1,4 +1,8 @@
-# Jotai Benchmarks
+# The Jotai Benchmark Collection
+
+<p align="center">
+  <img alt="merlin drawing" src="assets/img/Banner.png" width="95%" height="auto"/></br>
+</p>
 
 Jotai is a large collection of executable benchmarks mined from open source
 repositories.
